@@ -27,7 +27,7 @@ export default class HomeScreen extends React.Component {
     Alert.alert('Choose Concepts...');
   };
   onPressMakeGroups = () => {
-    Alert.alert('Making Groups...');
+    this.props.navigation.push('MakeGroup');
   };
   onPressMyGroups = () => {
     this.props.navigation.push('MyGroups');

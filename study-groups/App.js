@@ -13,6 +13,7 @@ import MyGroupScreen from './components/MyGroupScreen';
 import StudyProfile from './components/StudyProfile';
 import Login from './components/Login/Login';
 import Signup from './components/Signup/Signup';
+import AddStudyGroup from './components/AddStudyGroup/AddStudyGroup';
 
 // or any pure javascript modules available in npm
 import { Card } from 'react-native-elements'; // Version can be specified in package.json
@@ -23,6 +24,7 @@ const Index = createStackNavigator(
     MyGroups: { screen: MyGroupScreen },
     Login: { screen: Login },
     Signup: { screen: Signup },
+    MakeGroup: { screen: AddStudyGroup },
     StudyProfile: { screen: StudyProfile }
   },
   {
