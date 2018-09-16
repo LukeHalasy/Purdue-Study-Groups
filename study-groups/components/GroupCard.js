@@ -1,7 +1,15 @@
 import * as React from 'react';
-import { Text, View, StyleSheet, Image, Button, TouchableOpacity, Alert} from 'react-native';
+import {
+  Text,
+  View,
+  StyleSheet,
+  Image,
+  Button,
+  TouchableOpacity,
+  Alert
+} from 'react-native';
 import { Constants } from 'expo';
-import { StackNavigator, navigationOptions } from "react-navigation";
+import { StackNavigator, navigationOptions } from 'react-navigation';
 import { withNavigation } from 'react-navigation';
 
 //import styles from 'App.js';
@@ -13,15 +21,17 @@ import MyGroupScreen from './MyGroupScreen';
 const users = [
   {
     name: 'Chitoge Kirisaki',
-    avatar_url: 'https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/128.jpg',
+    avatar_url:
+      'https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/128.jpg',
     subtitle: 'Vice President'
   },
   {
     name: 'Chris Jackson',
-    avatar_url: 'https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg',
+    avatar_url:
+      'https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg',
     subtitle: 'Vice Chairman'
-  },
-]
+  }
+];
 
 const buttons = [
   //{ name: 'Monster Truck Rally',description: 'VROOM', attendees: [users.daniel, users.chris]},
@@ -29,32 +39,33 @@ const buttons = [
 
 class GroupCard extends React.Component {
   onJoinPress = () => {
-    this.props.navigation.navigate('StudyProfile', 
-            {
-              itemId:12,
-              title:this.props.title,
-              startTime: this.props.startTime,
-              endTime: this.props.endTime,
-              location: this.props.location,
-              members: users
-            }
-    );    
-  }
+    this.props.navigation.navigate('StudyProfile', {
+      itemId: 12,
+      title: this.props.title,
+      startTime: this.props.startTime,
+      endTime: this.props.endTime,
+      location: this.props.location,
+      members: users
+    });
+  };
 
   render() {
     return (
-      <Card 
-        title={this.props.title}
-        titleStyle={styles.conceptText}
-        >
+      <Card title={this.props.title} titleStyle={styles.conceptText}>
         <Text style={styles.cardText}>
           {this.props.startTime} - {this.props.endTime}
         </Text>
         <Button
-          onPress = {this.onJoinPress}
-          backgroundColor='#03A9F4'
-          buttonStyle={{borderRadius: 0, marginLeft: 0, marginRight: 0, marginBottom: 0}}
-          title='OPEN GROUP' />
+          onPress={this.onJoinPress}
+          backgroundColor="#03A9F4"
+          buttonStyle={{
+            borderRadius: 0,
+            marginLeft: 0,
+            marginRight: 0,
+            marginBottom: 0
+          }}
+          title="OPEN GROUP"
+        />
       </Card>
     );
   }
@@ -64,14 +75,14 @@ export default withNavigation(GroupCard);
 
 const styles = StyleSheet.create({
   space: {
-    flex:3,
-    flexDirection:'column',
+    flex: 3,
+    flexDirection: 'column'
   },
   buttonContainer: {
     flex: 1,
     flexDirection: 'column',
     justifyContent: 'center',
-    paddingHorizontal: 35,
+    paddingHorizontal: 35
     //backgroundColor: '#fff',
   },
   button: {
@@ -79,31 +90,26 @@ const styles = StyleSheet.create({
     //backgroundColor: '#841584',
     //backgroundColor:'#00BCD4',
     backgroundColor: 'skyblue',
-    justifyContent: 'column',
-    borderRadius:20,
+    borderRadius: 20,
     padding: 0,
-    flex:5
+    flex: 5
   },
-  buttonTextContainer:{
-    flex:1,
-    flexDirection:'row',
-    alignItems:'center',
+  buttonTextContainer: {
+    flex: 1,
+    flexDirection: 'row',
+    alignItems: 'center'
   },
-  conceptText:{
-    textAlign:'center',
+  conceptText: {
+    textAlign: 'center',
     //color:'#fff',
-    fontSize:30,
-    fontFamily:'San Francisco',
+    fontSize: 30
+
     //marginBottom: 10,
   },
 
   cardText: {
-    textAlign:'center',
+    textAlign: 'center',
     //color:'#fff',
-    fontSize:20,
-    fontFamily:'San Francisco',
-  },
+    fontSize: 20
+  }
 });
-
-
-

@@ -7,24 +7,18 @@ export default class Title extends React.Component {
   render() {
     return (
       <View style={styles.header}>
-
         //left icon
         <View style={styles.sideIconContainerLeft}>
-          <Icon/>
+          <Icon />
         </View>
-
         //center title
         <View>
-          <Text style={styles.niceTitle}>
-            {this.props.title}
-          </Text>
+          <Text style={styles.niceTitle}>{this.props.title}</Text>
         </View>
-
         //right icon
         <View style={styles.sideIconContainerRight}>
-          <Icon/>
+          <Icon />
         </View>
-
       </View>
     );
   }
@@ -33,53 +27,48 @@ const iconMargin = 15;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    flexDirection:'column',
+    flexDirection: 'column',
     //alignItems: 'center',
     //justifyContent: 'center',
     //paddingTop: Constants.statusBarHeight,
-    backgroundColor: '#ecf0f1',
+    backgroundColor: '#ecf0f1'
   },
   paragraph: {
     margin: 24,
     fontSize: 18,
     fontWeight: 'bold',
     textAlign: 'center',
-    color: '#34495e',
+    color: '#34495e'
   },
   sideIconContainerLeft: {
-    flex:1,
-    flexDirection:'center',
-    alignItems:'center',
-    backgroundColor:'D1BCE3',
-    marginRight:iconMargin,
+    flex: 1,
+    alignItems: 'center',
+    marginRight: iconMargin
   },
   sideIconContainerRight: {
-    flex:1,
-    flexDirection:'center',
-    alignItems:'center',
-    backgroundColor:'D1BCE3',
-    marginLeft:iconMargin,
+    flex: 1,
+    alignItems: 'center',
+    marginLeft: iconMargin
   },
-  titleContainer:{
-    alignItems:'center',
-    flex:2,
+  titleContainer: {
+    alignItems: 'center',
+    flex: 2
   },
   header: {
     //25 good for iphone8+
     paddingTop: 25,
     padding: 20,
     backgroundColor: 'skyblue',
-    flexDirection:'row',
+    flexDirection: 'row'
   },
   niceTitle: {
     textAlign: 'center',
 
-    color:'#fff',
+    color: '#fff',
     fontSize: 35,
     fontWeight: 'bold',
 
     alignItems: 'center',
-    alignSelf: 'stretch',
-  },
+    alignSelf: 'stretch'
+  }
 });
-

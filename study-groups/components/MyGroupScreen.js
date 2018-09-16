@@ -1,12 +1,11 @@
 import * as React from 'react';
-import { Text, View, StyleSheet, NavigatorIOS
- } from 'react-native';
+import { Text, View, StyleSheet, NavigatorIOS } from 'react-native';
 import { Constants } from 'expo';
 
 // You can import from local files
-import AssetExample from './AssetExample';
+
 import Title from './Title';
-import Choose from './Choose';
+
 import Icon from './Icon';
 import CardHolder from './CardHolder';
 
@@ -16,13 +15,13 @@ import { Card } from 'react-native-elements'; // 0.19.1
 export default class MyGroupScreen extends React.Component {
   //static navigationOptions = {
   //  title:'MyGroups Screen',
-  //};  
+  //};
   render() {
     return (
       //<Text style={styles.niceTitle}>MyGroups Screen</Text>
       <View style={styles.container}>
-        <Title title='Study Groups'/>
-        <CardHolder/>
+        <Title title="Study Groups" />
+        <CardHolder />
       </View>
     );
   }
@@ -34,14 +33,14 @@ const styles = StyleSheet.create({
     //alignItems: 'center',
     //justifyContent: 'center',
     //paddingTop: Constants.statusBarHeight,
-    backgroundColor: '#ecf0f1',
+    backgroundColor: '#ecf0f1'
   },
   paragraph: {
     margin: 24,
     fontSize: 18,
     fontWeight: 'bold',
     textAlign: 'center',
-    color: '#34495e',
+    color: '#34495e'
   },
   niceTitle: {
     backgroundColor: 'skyblue',
@@ -51,9 +50,6 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
 
     alignItems: 'center',
-    alignSelf: 'stretch',
-  },
+    alignSelf: 'stretch'
+  }
 });
-
-
-
