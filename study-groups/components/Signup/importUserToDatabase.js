@@ -22,7 +22,8 @@ export function importUserToDatabase(value) {
     email: value.email,
     name: value.name,
     password: value.password,
-    phone: value.phone
+    phone: value.phone,
+    groups: []
   };
 
   return database.ref().update(updates);

@@ -23,16 +23,28 @@ export function importInputToDatabase(value) {
     timeEnd: value.timeEnd,
     course: value.course,
     location: value.location,
+    users: [],
     description: value.description
   };
 
   return database.ref().update(updates);  
 }
 
+// add user to group
+export function addUserToGroup(user, group) {
+  console.log('add ' + user.email + ' to ' + group.id);
+
+  var updates = {};
+  updates['studyGroups/' + group.id].users.push(user.email);
+  updates['Users/' + user.email].groups.push(group.id);
+
+  database.ref().update(updates);
+}
+
 // todo: wire this function to a React component
-export function deleteInputInDatabase(id) {
-  console.log(id);
-  database.ref('studyGroups/' + id).remove();
+export function deleteGroupInDatabase(group) {
+  console.log(group);
+  database.ref('studyGroups/' + group.id).remove();
 }
 
 // search for groups based on starting time
@@ -56,6 +68,7 @@ export function searchTimeStart(timeStart) {
 
   return result;
 }
+
 
 // search for groups based on ending time
 // returns an array of objects
