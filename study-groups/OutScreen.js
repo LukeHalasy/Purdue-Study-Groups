@@ -7,39 +7,38 @@ import { StackNavigator, navigationOptions } from "react-navigation";
 
 // or any pure javascript modules available in npm
 import { Card } from 'react-native-elements'; // 0.19.1
-import MyGroupScreen from './MyGroupScreen';
+//import MyGroupScreen from './MyGroupScreen';
 
 const buttons = [
   //{ name: 'Monster Truck Rally',description: 'VROOM', attendees: [users.daniel, users.chris]},
 ];
 
-export default class GroupCard extends React.Component {
+export default class OutScreen extends React.Component {
+  
   onJoinPress = () => {
-    Alert.alert('Joining Group...');
-    this.props.navigation.navigate(
-    'StudyProfile',
-   // { user },
-    );
+    this.props.navigation.push('Home');
   }
-
   render() {
-    //const { navigation } = this.props;
-    //console.log("Props:",this.props);
     return (
-      <Card 
-        title={this.props.title}
-        titleStyle={styles.conceptText}
+      <View style={styles.buttonContainer}>
+        <TouchableOpacity
+          style={styles.button}
+          onPress={this.onJoinPress}
         >
-        <Text style={styles.cardText}>
-          {this.props.startTime} - {this.props.endTime}
-        </Text>
-        <Button
-          onPress = {this.onJoinPress}
+          <View style={styles.buttonTextContainer}>
+            <Text style={styles.buttonText}> {this.props.title} </Text>
+          </View>
+        </TouchableOpacity>
+       <Button 
+       onPress={this.onJoinPress}
+       title={this.props.title}
+       />
+
+       <Button
           backgroundColor='#03A9F4'
           buttonStyle={{borderRadius: 0, marginLeft: 0, marginRight: 0, marginBottom: 0}}
           title='JOIN GROUP' />
-      </Card>
-    //  </View>
+      </View>
     );
   }
 }
@@ -71,18 +70,10 @@ const styles = StyleSheet.create({
     flexDirection:'row',
     alignItems:'center',
   },
-  conceptText:{
+  buttonText: {
     textAlign:'center',
-    //color:'#fff',
-    fontSize:30,
-    fontFamily:'San Francisco',
-    //marginBottom: 10,
-  },
-
-  cardText: {
-    textAlign:'center',
-    //color:'#fff',
-    fontSize:20,
+    color:'#fff',
+    fontSize:45,
     fontFamily:'San Francisco',
   },
 });
