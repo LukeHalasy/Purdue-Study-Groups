@@ -15,7 +15,7 @@ export function importInputToDatabase(value) {
     timeEnd: value.timeEnd,
     course: value.course,
     location: value.location,
-    users: [value.useremail], // will need to include this in value
+    users: [],
     description: value.description
   };
 
@@ -39,10 +39,17 @@ export function deleteGroupInDatabase(group) {
   database.ref('studyGroups/' + group.id).remove();
 }
 
+// search all
+export function searchAll() {
+  database.ref('studyGroups/').once('value').then(snapshot => {
+    return snapshot.val();
+  });
+}
+
 // search for groups based on starting time
 // returns an array of objects
 export function searchTimeStart(timeStart) {
-  console.log('time start is ' + timeStart);
+  console.log('time start is ' + timeStart.toString());
 
   var result = [];
 
@@ -112,8 +119,7 @@ export function searchCourse(course) {
 export function deleteExpiredGroups() {
   database
     .ref('studyGroups/')
-    .once('value')
-    .then(snapshot => {
+    .on('value'), snapshot => {
       var data = snapshot.val();
       var currentTime = new Date();
 
@@ -122,5 +128,5 @@ export function deleteExpiredGroups() {
           database.ref('studyGroup/' + data[k].id).remove();
         }
       }
-    });
+    };
 }
