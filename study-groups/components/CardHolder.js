@@ -9,12 +9,22 @@ import { StackNavigator, navigationOptions } from "react-navigation";
 import { Card } from 'react-native-elements'; // 0.19.1
 import MyGroupScreen from './MyGroupScreen';
 import GroupCard from './GroupCard';
+import { withNavigation } from 'react-navigation';
 
-const buttons = [
-  //{ name: 'Monster Truck Rally',description: 'VROOM', attendees: [users.daniel, users.chris]},
-];
+const users = [
+  {
+    name: 'Chitoge Kirisaki',
+    avatar_url: 'https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/128.jpg',
+    subtitle: 'Vice President'
+  },
+  {
+    name: 'Chris Jackson',
+    avatar_url: 'https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg',
+    subtitle: 'Vice Chairman'
+  },
+]
 
-export default class CardHolder extends React.Component {
+class CardHolder extends React.Component {
   
   render() {
     //const { navigation } = this.props;
@@ -26,16 +36,16 @@ export default class CardHolder extends React.Component {
       <View style={styles.buttonContainer}>
       <ScrollView>
         <GroupCard title='I <3 ReactNative' startTime='1:00AM' endTime='2:00AM' course='' location='' description=''/>
-        <GroupCard title='Python is Life' startTime='3:00AM' endTime='4:00AM'/>
-        <GroupCard title='Python is Life' startTime='3:00AM' endTime='4:00AM'/>
-        <GroupCard title='Python is Life' startTime='3:00AM' endTime='4:00AM'/>
-        <GroupCard title='Python is Life' startTime='3:00AM' endTime='4:00AM'/>
+        <GroupCard  title='Python is Life' startTime='3:00AM' endTime='4:00AM'/>
+        <GroupCard  title='Python is Life' startTime='3:00AM' endTime='4:00AM'/>
+        <GroupCard  title='Python is Life' startTime='3:00AM' endTime='4:00AM'/>
+        <GroupCard  title='Python is Life' startTime='3:00AM' endTime='4:00AM'/>
       </ScrollView>
       </View>
     );
   }
 }
-
+export default withNavigation(CardHolder);
 const styles = StyleSheet.create({
   space: {
     flex:3,

@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { Text, View, StyleSheet, NavigatorIOS, TouchableOpacity, Alert } from 'react-native';
 import { Constants } from 'expo';
+import { withNavigation } from 'react-navigation';
 
 // You can import from local files
 import Title from './Title';

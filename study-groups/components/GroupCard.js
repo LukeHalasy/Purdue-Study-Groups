@@ -2,6 +2,7 @@ import * as React from 'react';
 import { Text, View, StyleSheet, Image, Button, TouchableOpacity, Alert} from 'react-native';
 import { Constants } from 'expo';
 import { StackNavigator, navigationOptions } from "react-navigation";
+import { withNavigation } from 'react-navigation';
 
 //import styles from 'App.js';
 
@@ -9,22 +10,40 @@ import { StackNavigator, navigationOptions } from "react-navigation";
 import { Card } from 'react-native-elements'; // 0.19.1
 import MyGroupScreen from './MyGroupScreen';
 
+const users2 = [
+  {
+    name: 'Chitoge Kirisaki',
+    avatar_url: 'https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/128.jpg',
+    subtitle: 'Vice President'
+  },
+  {
+    name: 'Chris Jackson',
+    avatar_url: 'https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg',
+    subtitle: 'Vice Chairman'
+  },
+]
+
 const buttons = [
   //{ name: 'Monster Truck Rally',description: 'VROOM', attendees: [users.daniel, users.chris]},
 ];
 
-export default class GroupCard extends React.Component {
+class GroupCard extends React.Component {
   onJoinPress = () => {
-    Alert.alert('Joining Group...');
-    this.props.navigation.navigate(
-    'StudyProfile',
-   // { user },
-    );
+    this.props.navigation.navigate('StudyProfile', 
+            {
+              itemId:12,
+              title:this.props.title,
+              startTime: this.props.startTime,
+              endTime: this.props.endTime,
+              location: 'N/A',
+              members: this.props.users,
+
+            }
+    );    
   }
 
   render() {
-    //const { navigation } = this.props;
-    //console.log("Props:",this.props);
+    //const { navigation } = this.props.navigation;
     return (
       <Card 
         title={this.props.title}
@@ -37,12 +56,13 @@ export default class GroupCard extends React.Component {
           onPress = {this.onJoinPress}
           backgroundColor='#03A9F4'
           buttonStyle={{borderRadius: 0, marginLeft: 0, marginRight: 0, marginBottom: 0}}
-          title='JOIN GROUP' />
+          title='OPEN GROUP' />
       </Card>
-    //  </View>
     );
   }
 }
+
+export default withNavigation(GroupCard);
 
 const styles = StyleSheet.create({
   space: {
