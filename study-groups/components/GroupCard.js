@@ -10,7 +10,7 @@ import { withNavigation } from 'react-navigation';
 import { Card } from 'react-native-elements'; // 0.19.1
 import MyGroupScreen from './MyGroupScreen';
 
-const users2 = [
+const users = [
   {
     name: 'Chitoge Kirisaki',
     avatar_url: 'https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/128.jpg',
@@ -29,22 +29,21 @@ const buttons = [
 
 class GroupCard extends React.Component {
   onJoinPress = () => {
-    this.props.navigation.navigate('StudyProfile',
+    this.props.navigation.navigate('StudyProfile', 
             {
+              itemId:12,
               title:this.props.title,
               startTime: this.props.startTime,
               endTime: this.props.endTime,
               location: this.props.location,
-              members: this.props.users,
-
+              members: users
             }
-    );
+    );    
   }
 
   render() {
-    //const { navigation } = this.props.navigation;
     return (
-      <Card
+      <Card 
         title={this.props.title}
         titleStyle={styles.conceptText}
         >
@@ -80,7 +79,7 @@ const styles = StyleSheet.create({
     //backgroundColor: '#841584',
     //backgroundColor:'#00BCD4',
     backgroundColor: 'skyblue',
-    justifyContent: 'center',
+    justifyContent: 'column',
     borderRadius:20,
     padding: 0,
     flex:5
@@ -94,7 +93,7 @@ const styles = StyleSheet.create({
     textAlign:'center',
     //color:'#fff',
     fontSize:30,
-    //deleted sanfrancisco
+    fontFamily:'San Francisco',
     //marginBottom: 10,
   },
 
@@ -102,6 +101,9 @@ const styles = StyleSheet.create({
     textAlign:'center',
     //color:'#fff',
     fontSize:20,
-    //deleted sanfrancisco
+    fontFamily:'San Francisco',
   },
 });
+
+
+
