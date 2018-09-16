@@ -1,6 +1,7 @@
 import * as React from 'react';
-import { Text, View, StyleSheet, Image, Button, TouchableOpacity, ScrollView, Alert} from 'react-native';
+import { Text, View, StyleSheet, Image, Button, TouchableOpacity, ScrollView, Alert, ActivityIndicator} from 'react-native';
 import { Constants } from 'expo';
+import firebase from "firebase";
 import { StackNavigator, navigationOptions } from "react-navigation";
 
 //import styles from 'App.js';
@@ -25,21 +26,83 @@ const users = [
 ]
 
 class CardHolder extends React.Component {
-  
+
+
+  constructor(props){
+      super(props);
+      this.state ={ isLoading: true, dataSource: []};
+  }
+
+  componentWillUnmount(){
+    console.log("dfsfsdfsdf");
+    database = null;
+  }
+
+  componentWillMount(){
+
+    var course = "MA 16500"
+    var startTime = "3:00"
+    var endTime = "9:00"
+
+    var config = {
+      apiKey: "AIzaSyB2cxEKpYdG9HMSmk3dpf0FIfFnUYog8sg",
+      authDomain: "purdueplanner-22f3f.firebaseapp.com",
+      databaseURL: "https://purdueplanner-22f3f.firebaseio.com",
+      projectId: "purdueplanner-22f3f",
+      storageBucket: "purdueplanner-22f3f.appspot.com",
+      messagingSenderId: "358266043933"
+    };
+    if (!firebase.apps.length) {
+    firebase.initializeApp(config);}
+    database = firebase.database();
+    let retrnValue = firebase
+    .database()
+    .ref('studyGroups/')
+    .once('value')
+    .then((snapshot) => {
+      let rawvalue = snapshot.val();
+      var resultValue = [];
+
+      for (var i in rawvalue){
+        rawvalue[i]["key"] = i;
+        resultValue.push(rawvalue[i]);
+      }
+      for (var i = resultValue.length - 1; i >= 0; --i) {
+          if (!(resultValue[i].course === course)){
+            resultValue.splice(i,1)
+          }
+      }
+
+      this.setState({
+        isLoading: false,
+        dataSource: resultValue,
+      });
+    });
+    return;
+  }
+
   render() {
+    if(this.state.isLoading){
+      return(
+        <View style={{flex: 1, padding: 20}}>
+          <ActivityIndicator/>
+        </View>
+      )
+    }
     //const { navigation } = this.props;
     //console.log("Props:",this.props);
+    console.log(this.state.dataSource);
     return (
       /*
-      
+
       */
       <View style={styles.buttonContainer}>
       <ScrollView>
-        <GroupCard title='I <3 ReactNative' startTime='1:00AM' endTime='2:00AM' course='' location='' description=''/>
-        <GroupCard  title='Python is Life' startTime='3:00AM' endTime='4:00AM'/>
-        <GroupCard  title='Python is Life' startTime='3:00AM' endTime='4:00AM'/>
-        <GroupCard  title='Python is Life' startTime='3:00AM' endTime='4:00AM'/>
-        <GroupCard  title='Python is Life' startTime='3:00AM' endTime='4:00AM'/>
+      {this.state.dataSource.map((item, index) => {
+        return (
+            <GroupCard title={item.course} startTime={item.timeStart} endTime={item.timeEnd} course={item.course} location={item.location} description={item.description}/>
+        )
+      })}
       </ScrollView>
       </View>
     );
@@ -63,7 +126,7 @@ const styles = StyleSheet.create({
     //backgroundColor: '#841584',
     //backgroundColor:'#00BCD4',
     backgroundColor: 'skyblue',
-    justifyContent: 'column',
+    justifyContent: 'center',
     borderRadius:20,
     padding: 0,
     flex:5
@@ -77,7 +140,6 @@ const styles = StyleSheet.create({
     textAlign:'center',
     color:'#fff',
     fontSize:45,
-    fontFamily:'San Francisco',
+    //deleted sanfrancisco
   },
 });
-
