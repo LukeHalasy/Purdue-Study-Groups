@@ -3,6 +3,7 @@ import { Text, View, StyleSheet, NavigatorIOS } from 'react-native';
 import { Constants } from 'expo';
 import { navigationOptions } from 'react-navigation';
 import { createStackNavigator, createDrawerNavigator } from 'react-navigation';
+import { withNavigation } from 'react-navigation';
 
 // You can import from local files
 //import AssetExample from './components/AssetExample';
