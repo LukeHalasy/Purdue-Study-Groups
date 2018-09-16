@@ -5,10 +5,10 @@ import { createStackNavigator } from 'react-navigation';
 
 
 const styles = StyleSheet.create({
-  
+
   footer: {
     flexDirection:"row",
-    flex:1,    
+    flex:1,
   },
   footerButtonContainer:{
     flex:1,
@@ -27,13 +27,13 @@ class FooterComponent extends React.Component {
           <View style={styles.footerButtonContainer}>
             <Button active title='HELLO' color='#fff'>
             </Button>
-          </View>  
+          </View>
           <View style={styles.footerButtonContainer}>
             <Button active title='HELLO' color='#fff'>
-              
+
             </Button>
             </View>
-            
+
           </FooterTab>
         </Footer>
       )
@@ -41,6 +41,3 @@ class FooterComponent extends React.Component {
 }
 
 export default FooterComponent;
-
-
- 

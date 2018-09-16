@@ -7,6 +7,7 @@ import {
   ActivityIndicator
 } from 'react-native';
 import { Constants } from 'expo';
+import { ScrollView } from 'react-native'
 import { List, ListItem } from 'react-native-elements';
 import { withNavigation } from 'react-navigation';
 import firebase from 'firebase';
@@ -124,7 +125,7 @@ export default class StudyProfile extends React.Component {
             Location - {this.props.navigation.getParam('location', 'N/A')}
           </Text>
           <Text style={styles.description}>Members</Text>
-          <List containerStyle={styles.member}>
+          <ScrollView>
             {this.state.dataSource.map(l => (
               <ListItem
                 roundAvatar
@@ -136,7 +137,7 @@ export default class StudyProfile extends React.Component {
               />
             ))}
             }
-          </List>
+          </ScrollView>
         </View>
       );
     }
@@ -144,6 +145,11 @@ export default class StudyProfile extends React.Component {
 }
 
 const styles = StyleSheet.create({
+  peopleScroll:{
+    flexDirection:'column',
+    flex:1,
+
+  },
   member: {
     marginBottom: 20
     //flex:'stretch',

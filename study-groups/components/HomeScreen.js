@@ -22,7 +22,7 @@ import { Card } from 'react-native-elements'; // 0.19.1
 
 class HomeScreen extends React.Component {
   onPressFindGroups = () => {
-    this.props.navigation.push('AllGroups');
+    this.props.navigation.push('FindGroup');
   };
   onLongPressFindGroups = () => {
     Alert.alert('Choose Concepts...');

@@ -1,7 +1,6 @@
 import '../../database/database';
 import firebase from 'firebase';
 
-database = firebase.database();
 
 database = firebase.database();
 

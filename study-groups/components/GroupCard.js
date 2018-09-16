@@ -95,7 +95,7 @@ const styles = StyleSheet.create({
     textAlign:'center',
     //color:'#fff',
     fontSize:30,
-    fontFamily:'San Francisco',
+    //fontFamily:'San Francisco',
     //marginBottom: 10,
   },
 
@@ -103,6 +103,6 @@ const styles = StyleSheet.create({
     textAlign:'center',
     //color:'#fff',
     fontSize:20,
-    fontFamily:'San Francisco',
+  //  fontFamily:'San Francisco',
   },
 });
