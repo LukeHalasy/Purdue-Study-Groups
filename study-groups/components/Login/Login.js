@@ -2,6 +2,7 @@ import React from 'react';
 import { StyleSheet, Text, Button, View } from 'react-native';
 import t from 'tcomb-form-native';
 import { authenticate, getUniqueID } from './authenticateLogin';
+import { withNavigation } from 'react-navigation';
 
 const Form = t.form.Form;
 
@@ -26,7 +27,12 @@ export default class Login extends React.Component {
     if (authenticate(value)) {
       //Log the user in by passing their email to the next Component
       //value.email
+      this.props.navigation.push('Home', { email: value.email });
     }
+  };
+
+  handleSignUpSubmit = () => {
+    this.props.navigation.push('Signup');
   };
 
   render() {
@@ -38,7 +44,7 @@ export default class Login extends React.Component {
           options={options}
         />
         <Button title="Submit" onPress={this.handleSubmit} />
-        <Button title="Sign Up" onPress={this.handleSubmit} />
+        <Button title="Sign Up" onPress={this.handleSignUpSubmit} />
       </View>
     );
   }
