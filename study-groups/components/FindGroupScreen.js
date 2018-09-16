@@ -1,10 +1,8 @@
 import * as React from 'react';
-import { Text, View, StyleSheet, NavigatorIOS
- } from 'react-native';
+import { Text, View, StyleSheet, NavigatorIOS } from 'react-native';
 import { Constants } from 'expo';
 
 // You can import from local files
-import AssetExample from './AssetExample';
 import Title from './Title';
 import Icon from './Icon';
 import AllGroups from './AllGroups';
@@ -20,8 +18,8 @@ export default class FindGroupScreen extends React.Component {
     return (
       //<Text style={styles.niceTitle}>MyGroups Screen</Text>
       <View style={styles.container}>
-        <Title title='Study Groups'/>
-        <AllGroups/>
+        <Title title="Study Groups" />
+        <AllGroups />
       </View>
     );
   }
@@ -33,14 +31,14 @@ const styles = StyleSheet.create({
     //alignItems: 'center',
     //justifyContent: 'center',
     //paddingTop: Constants.statusBarHeight,
-    backgroundColor: '#ecf0f1',
+    backgroundColor: '#ecf0f1'
   },
   paragraph: {
     margin: 24,
     fontSize: 18,
     fontWeight: 'bold',
     textAlign: 'center',
-    color: '#34495e',
+    color: '#34495e'
   },
   niceTitle: {
     backgroundColor: 'skyblue',
@@ -50,6 +48,6 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
 
     alignItems: 'center',
-    alignSelf: 'stretch',
-  },
+    alignSelf: 'stretch'
+  }
 });

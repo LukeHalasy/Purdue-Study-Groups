@@ -12,22 +12,29 @@ import HomeScreen from './components/HomeScreen';
 import MyGroupScreen from './components/MyGroupScreen';
 import StudyProfile from './components/StudyProfile';
 import FindGroupScreen from './components/FindGroupScreen';
+import Login from './components/Login/Login';
+import Signup from './components/Signup/Signup';
 
 // or any pure javascript modules available in npm
 import { Card } from 'react-native-elements'; // Version can be specified in package.json
 
-const Index = createStackNavigator({
-  Home: {screen : HomeScreen } ,
-  MyGroups: { screen: MyGroupScreen} ,
-  StudyProfile : { screen : StudyProfile },
-  FindGroup : { screen : FindGroupScreen },
-}, {
-  initialRouteName: 'Home',
-});
+const Index = createStackNavigator(
+  {
+    Home: { screen: HomeScreen },
+    Login: { screen: Login },
+    Signup: { screen: Signup },
+    MyGroups: { screen: MyGroupScreen },
+    StudyProfile: { screen: StudyProfile },
+    FindGroup: { screen: FindGroupScreen }
+  },
+  {
+    initialRouteName: 'Login'
+  }
+);
 
 export default class App extends React.Component {
   render() {
-    return <Index/>;
+    return <Index />;
   }
 }
 
@@ -37,14 +44,14 @@ const styles = StyleSheet.create({
     //alignItems: 'center',
     //justifyContent: 'center',
     //paddingTop: Constants.statusBarHeight,
-    backgroundColor: '#ecf0f1',
+    backgroundColor: '#ecf0f1'
   },
   paragraph: {
     margin: 24,
     fontSize: 18,
     fontWeight: 'bold',
     textAlign: 'center',
-    color: '#34495e',
+    color: '#34495e'
   },
   niceTitle: {
     backgroundColor: 'skyblue',
@@ -54,6 +61,6 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
 
     alignItems: 'center',
-    alignSelf: 'stretch',
-  },
+    alignSelf: 'stretch'
+  }
 });
