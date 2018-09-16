@@ -4,7 +4,6 @@ import { Text, View, StyleSheet, Image, Button, TouchableOpacity, ScrollView, Al
 import { Constants } from 'expo';
 import firebase from "firebase";
 import { StackNavigator, navigationOptions } from "react-navigation";
-import {searchAll} from './AddStudyGroup/importInputToDatabase.js';
 
 //import styles from 'App.js';
 
@@ -35,39 +34,45 @@ class AllGroups extends React.Component {
       this.state ={ isLoading: true, dataSource: []};
   }
 
-  componentWillUnmount(){
-    console.log("dfsfsdfsdf");
-    database = null;
-  }
-
   componentWillMount(){
 
+        var course = "MA 16500"
+        var startTime = "3:00"
+        var endTime = "9:00"
 
-    var config = {
-      apiKey: "AIzaSyB2cxEKpYdG9HMSmk3dpf0FIfFnUYog8sg",
-      authDomain: "purdueplanner-22f3f.firebaseapp.com",
-      databaseURL: "https://purdueplanner-22f3f.firebaseio.com",
-      projectId: "purdueplanner-22f3f",
-      storageBucket: "purdueplanner-22f3f.appspot.com",
-      messagingSenderId: "358266043933"
-    };
-    if (!firebase.apps.length) {
-    firebase.initializeApp(config);}
-    database = firebase.database();
-    let retrnValue = firebase
-    .database()
-    .ref('studyGroups/')
-    .once('value')
-    .then((snapshot) => {
-      this.setState({
-        isLoading: false,
-        dataSource: snapshot.val(),
-      });
-    });
-    return;
+        var config = {
+          apiKey: "AIzaSyB2cxEKpYdG9HMSmk3dpf0FIfFnUYog8sg",
+          authDomain: "purdueplanner-22f3f.firebaseapp.com",
+          databaseURL: "https://purdueplanner-22f3f.firebaseio.com",
+          projectId: "purdueplanner-22f3f",
+          storageBucket: "purdueplanner-22f3f.appspot.com",
+          messagingSenderId: "358266043933"
+        };
+        if (!firebase.apps.length) {
+        firebase.initializeApp(config);}
+        database = firebase.database();
+        let retrnValue = firebase
+        .database()
+        .ref('studyGroups/')
+        .once('value')
+        .then((snapshot) => {
+          let rawvalue = snapshot.val();
+          var resultValue = [];
+
+          for (var i in rawvalue){
+            rawvalue[i]["key"] = i;
+            resultValue.push(rawvalue[i]);
+          }
+
+          this.setState({
+            isLoading: false,
+            dataSource: resultValue,
+          });
+        });
+        return;
   }
 
-  render() {
+/*
     if(this.state.isLoading){
       return(
         <View style={{flex: 1, padding: 20}}>
@@ -75,26 +80,44 @@ class AllGroups extends React.Component {
         </View>
       )
     }
-    //const { navigation } = this.props;
-    //console.log("Props:",this.props);
-    console.log(this.state.dataSource);
-    return (
-      /*
-
-      */
-      <View style={styles.buttonContainer}>
-      <ScrollView>
       {this.state.dataSource.map((item, index) => {
         return (
-            <GroupCard title={item.course} startTime={item.timeStart} endTime={item.timeEnd} course={item.course} location={item.location} description={item.description}/>
+
+            //<GroupCard title={item.course} startTime={item.timeStart} endTime={item.timeEnd} course={item.course} location={item.location} description={item.description}/>
         )
-      })}
-      </ScrollView>
-      </View>
-    );
-  }
+      }*/
+
+      render() {
+        if(this.state.isLoading){
+          return(
+            <View style={{flex: 1, padding: 20}}>
+              <ActivityIndicator/>
+            </View>
+          )
+        }
+        //const { navigation } = this.props;
+        //console.log("Props:",this.props);
+        console.log(this.state.dataSource);
+        return (
+          /*
+
+          */
+          <View style={styles.buttonContainer}>
+          <ScrollView>
+          {this.state.dataSource.map((item, index) => {
+            return (
+                <GroupCard title={item.course} startTime={item.timeStart} endTime={item.timeEnd} course={item.course} location={item.location} description={item.description}/>
+            )
+          })}
+          </ScrollView>
+          </View>
+        );
+      }
+
+
 }
-export default withNavigation(CardHolder);
+export default withNavigation(AllGroups);
+
 const styles = StyleSheet.create({
   space: {
     flex:3,
