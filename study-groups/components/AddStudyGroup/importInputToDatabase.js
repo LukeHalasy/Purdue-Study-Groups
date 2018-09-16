@@ -1,14 +1,6 @@
+import '../../database/database';
 import firebase from 'firebase';
 
-var config = {
-  apiKey: 'AIzaSyB2cxEKpYdG9HMSmk3dpf0FIfFnUYog8sg',
-  authDomain: 'purdueplanner-22f3f.firebaseapp.com',
-  databaseURL: 'https://purdueplanner-22f3f.firebaseio.com',
-  projectId: 'purdueplanner-22f3f',
-  storageBucket: 'purdueplanner-22f3f.appspot.com',
-  messagingSenderId: '358266043933'
-};
-firebase.initializeApp(config);
 database = firebase.database();
 
 export function importInputToDatabase(value) {
@@ -27,7 +19,7 @@ export function importInputToDatabase(value) {
     description: value.description
   };
 
-  return database.ref().update(updates);  
+  return database.ref().update(updates);
 }
 
 // add user to group
@@ -54,21 +46,21 @@ export function searchTimeStart(timeStart) {
 
   var result = [];
 
-  database.ref('studyGroups/')
-          .once('value')
-          .then(snapshot => {
-            var data = snapshot.val();
+  database
+    .ref('studyGroups/')
+    .once('value')
+    .then(snapshot => {
+      var data = snapshot.val();
 
-            for (var k in data) {
-              if (data[k].timeStart == timeStart) {
-                result.push(data[k]);
-              } 
-            }
-          });
+      for (var k in data) {
+        if (data[k].timeStart == timeStart) {
+          result.push(data[k]);
+        }
+      }
+    });
 
   return result;
 }
-
 
 // search for groups based on ending time
 // returns an array of objects
@@ -77,17 +69,18 @@ export function searchTimeEnd(timeEnd) {
 
   var result = [];
 
-  database.ref('studyGroups/')
-          .once('value')
-          .then(snapshot => {
-            var data = snapshot.val();
+  database
+    .ref('studyGroups/')
+    .once('value')
+    .then(snapshot => {
+      var data = snapshot.val();
 
-            for (var k in data) {
-              if (data[k].timeEnd == timeEnd) {
-                result.push(data[k]);
-              } 
-            }
-          });
+      for (var k in data) {
+        if (data[k].timeEnd == timeEnd) {
+          result.push(data[k]);
+        }
+      }
+    });
 
   return result;
 }
@@ -99,33 +92,35 @@ export function searchCourse(course) {
 
   var result = [];
 
-  database.ref('studyGroups/')
-          .once('value')
-          .then(snapshot => {
-            var data = snapshot.val();
+  database
+    .ref('studyGroups/')
+    .once('value')
+    .then(snapshot => {
+      var data = snapshot.val();
 
-            for (var k in data) {
-              if (data[k].course == course) {
-                result.push(data[k]);
-              } 
-            }
-          });
+      for (var k in data) {
+        if (data[k].course == course) {
+          result.push(data[k]);
+        }
+      }
+    });
 
   return result;
 }
 
 // automatically delete expired groups based on ending time
 export function deleteExpiredGroups() {
-  database.ref('studyGroups/')
-          .once('value')
-          .then(snapshot => {
-            var data = snapshot.val();
-            var currentTime = new Date();
+  database
+    .ref('studyGroups/')
+    .once('value')
+    .then(snapshot => {
+      var data = snapshot.val();
+      var currentTime = new Date();
 
-            for (var k in data) {
-              if (data[k].timeEnd > currentTime.getTime()) {
-                database.ref('studyGroup/' + data[k].id).remove();
-              }
-            }
-          });
+      for (var k in data) {
+        if (data[k].timeEnd > currentTime.getTime()) {
+          database.ref('studyGroup/' + data[k].id).remove();
+        }
+      }
+    });
 }
