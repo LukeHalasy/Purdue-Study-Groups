@@ -16,9 +16,13 @@ const addGroup = t.struct({
 export default class AddStudyGroup extends Component {
   handleSubmit = () => {
     const value = this._form.getValue(); // use that ref to get the form value
-    console.log('value: ', value);
-    
-    importInputToDatabase(value);
+
+    importInputToDatabase(
+      value,
+      this.props.navigation.getParam('email', 'N/A')
+    );
+
+    this.props.navigation.navigate('MyGroups');
   };
 
   render() {

@@ -3,20 +3,21 @@ import firebase from 'firebase';
 
 database = firebase.database();
 
-export function importInputToDatabase(value) {
-  console.log(value);
+export function importInputToDatabase(value, email) {
+  console.log('emailimport:', email);
 
   var pushKey = database.ref('studyGroups/').push().key;
   var updates = {};
 
   updates['studyGroups/' + pushKey] = {
-    id: key,
+    id: pushKey,
     timeStart: value.timeStart,
     timeEnd: value.timeEnd,
     course: value.course,
     location: value.location,
     users: [],
-    description: value.description
+    description: value.description,
+    members: [email]
   };
 
   return database.ref().update(updates);
@@ -41,9 +42,12 @@ export function deleteGroupInDatabase(group) {
 
 // search all
 export function searchAll() {
-  database.ref('studyGroups/').once('value').then(snapshot => {
-    return snapshot.val();
-  });
+  database
+    .ref('studyGroups/')
+    .once('value')
+    .then(snapshot => {
+      return snapshot.val();
+    });
 }
 
 // search for groups based on starting time
@@ -117,9 +121,8 @@ export function searchCourse(course) {
 
 // automatically delete expired groups based on ending time
 export function deleteExpiredGroups() {
-  database
-    .ref('studyGroups/')
-    .on('value'), snapshot => {
+  database.ref('studyGroups/').on('value'),
+    snapshot => {
       var data = snapshot.val();
       var currentTime = new Date();
 

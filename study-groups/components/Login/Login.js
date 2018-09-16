@@ -20,14 +20,16 @@ var options = {
   }
 };
 
-export default class Login extends React.Component {
+class Login extends React.Component {
   handleSubmit = () => {
     const value = this._form.getValue();
-
     if (authenticate(value)) {
       //Log the user in by passing their email to the next Component
       //value.email
-      this.props.navigation.push('Home', { email: value.email });
+      const email = value.email;
+
+      this.props.navigation.push('Home', { email: email });
+      console.log('Email Prop:', email);
     }
   };
 
@@ -49,6 +51,8 @@ export default class Login extends React.Component {
     );
   }
 }
+
+export default withNavigation(Login);
 
 const styles = StyleSheet.create({
   container: {

@@ -9,6 +9,7 @@ import {
 } from 'react-native';
 import { Constants } from 'expo';
 import { withNavigation } from 'react-navigation';
+import AddStudyGroup from './AddStudyGroup/AddStudyGroup';
 
 // You can import from local files
 import Title from './Title';
@@ -19,7 +20,7 @@ import PropTypes from 'prop-types';
 // or any pure javascript modules available in npm
 import { Card } from 'react-native-elements'; // 0.19.1
 
-export default class HomeScreen extends React.Component {
+class HomeScreen extends React.Component {
   onPressFindGroups = () => {
     this.props.navigation.push('AllGroups');
   };
@@ -27,16 +28,20 @@ export default class HomeScreen extends React.Component {
     Alert.alert('Choose Concepts...');
   };
   onPressMakeGroups = () => {
-    this.props.navigation.push('MakeGroup');
+    this.props.navigation.push('MakeGroup', {
+      email: this.props.navigation.getParam('email', 'N/A')
+    });
   };
   onPressMyGroups = () => {
     this.props.navigation.push('MyGroups');
   };
 
   render() {
+    console.log('HS:', this.props.email);
+    console.log('HSNAv:', this.props.navigation.getParam('email', 'N/A'));
     return (
       <View style={styles.container}>
-        <Title title="Study Groups" />
+        <Title title="Study Group" />
         <View style={styles.buttonContainer}>
           <View style={styles.space}> </View>
           <TouchableOpacity style={styles.button}>
@@ -69,6 +74,8 @@ export default class HomeScreen extends React.Component {
     );
   }
 }
+
+export default withNavigation(HomeScreen);
 
 const styles = StyleSheet.create({
   container: {
