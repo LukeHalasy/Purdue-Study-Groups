@@ -9,20 +9,28 @@ import { createStackNavigator, createDrawerNavigator } from 'react-navigation';
 
 import HomeScreen from './components/HomeScreen';
 import MyGroupScreen from './components/MyGroupScreen';
-import StudyProfile from './components/StudyProfile';
 
 // or any pure javascript modules available in npm
 import { Card } from 'react-native-elements'; // Version can be specified in package.json
 
 const index = createStackNavigator({
-  Home: {screen : HomeScreen } ,
-  MyGroup: { screen: MyGroupScreen} ,
-  StudyProfile:{screen:StudyProfile},
+  Home: { screen: HomeScreen },
+  Event: { screen: MyGroupScreen },
 }, {
-  initialRouteName: 'StudyProfile',
+  initialRouteName: 'Home',
 });
 
-export default index;
+export default class App extends React.Component {
+  render() {
+    return (
+      <HomeScreen/>
+    );
+  }
+}
+
+
+
+
 
 const styles = StyleSheet.create({
   container: {

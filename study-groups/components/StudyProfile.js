@@ -13,16 +13,14 @@ import CardHolder from './CardHolder';
 // or any pure javascript modules available in npm
 import { Card } from 'react-native-elements'; // 0.19.1
 
-export default class MyGroupScreen extends React.Component {
+export default class StudyProfile extends React.Component {
   //static navigationOptions = {
   //  title:'MyGroups Screen',
   //};  
   render() {
     return (
-      //<Text style={styles.niceTitle}>MyGroups Screen</Text>
       <View style={styles.container}>
-        <Title title='Study Groups'/>
-        <CardHolder/>
+        <Title title='Yes'/>
       </View>
     );
   }

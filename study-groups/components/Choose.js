@@ -1,18 +1,23 @@
 import * as React from 'react';
 import { Text, View, StyleSheet, Image, Button, TouchableOpacity, Alert} from 'react-native';
 import { Constants } from 'expo';
+import { StackNavigator, navigationOptions } from "react-navigation";
 
 //import styles from 'App.js';
 
 // or any pure javascript modules available in npm
 import { Card } from 'react-native-elements'; // 0.19.1
+import MyGroupScreen from './MyGroupScreen';
 
-// You can import from local files
-import AssetExample from './AssetExample';
+const buttons = [
+  //{ name: 'Monster Truck Rally',description: 'VROOM', attendees: [users.daniel, users.chris]},
+];
 
 export default class Choose extends React.Component {
+  
   onPressFindGroups = () => {
     Alert.alert('Finding Groups...');
+    //this.props.push('MyGroup');
   }
   onLongPressFindGroups = () => {
     Alert.alert('Choose Concepts...');
@@ -23,7 +28,18 @@ export default class Choose extends React.Component {
   onPressMyGroups = () => {
     Alert.alert('Opening Groups...');
   }
+
+/*
+  renderEventList(events = [], navigation) {
+    return (
+      <TouchableOpacity onPress={() => navigation.navigate('MyGroupScreen')}>
+        <Text>Yes</Text>
+      </TouchableOpacity>)
+  }*/
+
   render() {
+    //const { navigation } = this.props;
+    //console.log("Props:",this.props);
     return (
       /*
       <Card title="Find Groups">
@@ -34,14 +50,14 @@ export default class Choose extends React.Component {
       */
       <View style={styles.buttonContainer}>
        <View style={styles.space}></View>
-        
         <TouchableOpacity
-          onPress={this.onPressFindGroups}
+          //onPress={() => this.props.navigation.navigate('MyGroup')}
+          onPress={()=>console.log(this.props)}
           onLongPress={this.onLongPressFindGroups}
           style={styles.button}
         >
           <View style={styles.buttonTextContainer}>
-            <Text style={styles.buttonText}> Find Groups              </Text>
+            <Text style={styles.buttonText}> Find Groups </Text>
           </View>
         </TouchableOpacity>
         
@@ -102,6 +118,5 @@ const styles = StyleSheet.create({
     fontSize:45,
     fontFamily:'San Francisco',
   },
-  
 });
 
