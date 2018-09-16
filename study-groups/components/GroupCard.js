@@ -29,23 +29,22 @@ const buttons = [
 
 class GroupCard extends React.Component {
   onJoinPress = () => {
-    this.props.navigation.navigate('StudyProfile', 
+    this.props.navigation.navigate('StudyProfile',
             {
-              itemId:12,
               title:this.props.title,
               startTime: this.props.startTime,
               endTime: this.props.endTime,
-              location: 'N/A',
+              location: this.props.location,
               members: this.props.users,
 
             }
-    );    
+    );
   }
 
   render() {
     //const { navigation } = this.props.navigation;
     return (
-      <Card 
+      <Card
         title={this.props.title}
         titleStyle={styles.conceptText}
         >
@@ -81,7 +80,7 @@ const styles = StyleSheet.create({
     //backgroundColor: '#841584',
     //backgroundColor:'#00BCD4',
     backgroundColor: 'skyblue',
-    justifyContent: 'column',
+    justifyContent: 'center',
     borderRadius:20,
     padding: 0,
     flex:5
@@ -95,7 +94,7 @@ const styles = StyleSheet.create({
     textAlign:'center',
     //color:'#fff',
     fontSize:30,
-    fontFamily:'San Francisco',
+    //deleted sanfrancisco
     //marginBottom: 10,
   },
 
@@ -103,7 +102,6 @@ const styles = StyleSheet.create({
     textAlign:'center',
     //color:'#fff',
     fontSize:20,
-    fontFamily:'San Francisco',
+    //deleted sanfrancisco
   },
 });
-
