@@ -15,7 +15,7 @@ export function importInputToDatabase(value) {
     timeEnd: value.timeEnd,
     course: value.course,
     location: value.location,
-    users: [],
+    users: [value.useremail], // will need to include this in value
     description: value.description
   };
 
