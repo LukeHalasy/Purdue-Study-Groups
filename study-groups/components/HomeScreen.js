@@ -123,7 +123,6 @@ const styles = StyleSheet.create({
   buttonText: {
     textAlign: 'center',
     color: '#fff',
-    fontSize: 45,
-    fontFamily: 'San Francisco'
+    fontSize: 45
   }
 });
