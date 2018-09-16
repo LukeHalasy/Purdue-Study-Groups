@@ -3,11 +3,12 @@ import { Text, View, StyleSheet, Image, Button, TouchableOpacity, Alert} from 'r
 import { Constants } from 'expo';
 import { StackNavigator, navigationOptions } from "react-navigation";
 
+
 //import styles from 'App.js';
 
 // or any pure javascript modules available in npm
 import { Card } from 'react-native-elements'; // 0.19.1
-import MyGroupScreen from './MyGroupScreen';
+import MyGroupScreen from './MyGroupScreen.js';
 
 const buttons = [
   //{ name: 'Monster Truck Rally',description: 'VROOM', attendees: [users.daniel, users.chris]},
@@ -17,7 +18,6 @@ export default class Choose extends React.Component {
   
   onPressFindGroups = () => {
     Alert.alert('Finding Groups...');
-    //this.props.push('MyGroup');
   }
   onLongPressFindGroups = () => {
     Alert.alert('Choose Concepts...');
@@ -26,34 +26,15 @@ export default class Choose extends React.Component {
     Alert.alert('Making Groups...');
   }
   onPressMyGroups = () => {
-    Alert.alert('Opening Groups...');
+    this.props.navigation.push('MyGroups');
   }
 
-/*
-  renderEventList(events = [], navigation) {
-    return (
-      <TouchableOpacity onPress={() => navigation.navigate('MyGroupScreen')}>
-        <Text>Yes</Text>
-      </TouchableOpacity>)
-  }*/
-
   render() {
-    //const { navigation } = this.props;
-    //console.log("Props:",this.props);
     return (
-      /*
-      <Card title="Find Groups">
-        <Text style={styles.paragraph}>
-          New Groups!
-        </Text>
-      </Card>
-      */
+
       <View style={styles.buttonContainer}>
-       <View style={styles.space}></View>
+       <View style={styles.space}> </View>
         <TouchableOpacity
-          //onPress={() => this.props.navigation.navigate('MyGroup')}
-          onPress={()=>console.log(this.props)}
-          onLongPress={this.onLongPressFindGroups}
           style={styles.button}
         >
           <View style={styles.buttonTextContainer}>
@@ -67,7 +48,7 @@ export default class Choose extends React.Component {
           style={styles.button}
         >
           <View style={styles.buttonTextContainer}>
-            <Text style={styles.buttonText}> Make Groups              </Text>
+            <Text style={styles.buttonText}> Make Groups </Text>
           </View>
         </TouchableOpacity>
         <View style={styles.space}></View>
@@ -76,7 +57,7 @@ export default class Choose extends React.Component {
           style={styles.button}
         >
           <View style={styles.buttonTextContainer}>
-            <Text style={styles.buttonText}> My Groups              </Text>
+            <Text style={styles.buttonText}> My Groups </Text>
           </View>
         </TouchableOpacity>
         <View style={styles.space}></View>
