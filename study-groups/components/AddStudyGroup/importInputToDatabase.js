@@ -120,11 +120,10 @@ export function deleteExpiredGroups() {
           .once('value')
           .then(snapshot => {
             var data = snapshot.val();
-            var currentTime = 10000000;
+            var currentTime = new Date();
 
             for (var k in data) {
-              // todo: compare time
-              if (data[k].timeEnd > currentTime) {
+              if (data[k].timeEnd > currentTime.getTime()) {
                 database.ref('studyGroup/' + data[k].id).remove();
               }
             }
