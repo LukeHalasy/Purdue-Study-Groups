@@ -22,7 +22,7 @@ export default class AddStudyGroup extends Component {
       this.props.navigation.getParam('email', 'N/A')
     );
 
-    this.props.navigation.navigate('MyGroups');
+    //this.props.navigation.navigate('MyGroups');
   };
 
   render() {

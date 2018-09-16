@@ -3,6 +3,8 @@ import firebase from 'firebase';
 
 database = firebase.database();
 
+database = firebase.database();
+
 export function importInputToDatabase(value, email) {
   console.log('emailimport:', email);
 
