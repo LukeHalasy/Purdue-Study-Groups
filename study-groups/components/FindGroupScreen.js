@@ -4,7 +4,6 @@ import { Text, View, StyleSheet, NavigatorIOS
 import { Constants } from 'expo';
 
 // You can import from local files
-import AssetExample from './AssetExample';
 import Title from './Title';
 import Icon from './Icon';
 import AllGroups from './AllGroups';
